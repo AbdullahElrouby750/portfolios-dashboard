@@ -1,13 +1,10 @@
 import React from "react";
-import ThemProvider from "./categorized context/ThemProvider";
-import AuthProvider from "./categorized context/AuthProvider";
+import AuthProvider from "./categorized-context/AuthProvider";
 
 function AppProvider({ children }) {
     return (
         <AuthProvider>
-            <ThemProvider>
-                {children}
-            </ThemProvider>
+            {children}
         </AuthProvider>
     )
 }

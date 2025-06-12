@@ -1,0 +1,65 @@
+dashboard-frontend/
+├── public/                   # Static assets served at the root (e.g., favicon.ico)
+├── src/                      # Source files for the React application
+│   ├── features/             # Feature-based modules for organizing functionality
+│   │   ├── auth/             # Authentication-related files
+│   │   │   ├── components/   # Auth-specific components (e.g., LoginForm.jsx)
+│   │   │   │   └── LoginForm.jsx
+│   │   │   ├── pages/        # Auth pages (e.g., Login.jsx)
+│   │   │   │   └── Login.jsx
+│   │   │   └── hooks/        # Auth-specific hooks (e.g., useAuth.js)
+│   │   │       └── useAuth.js
+│   │   ├── dashboard/        # Dashboard layout and home
+│   │   │   ├── components/   # Dashboard layout components (e.g., Sidebar.jsx)
+│   │   │   │   ├── Sidebar.jsx
+│   │   │   │   └── Navbar.jsx
+│   │   │   └── pages/        # Dashboard home page
+│   │   │       └── DashboardHome.jsx
+│   │   ├── users/            # User management feature
+│   │   │   ├── components/   # User management components (e.g., UserForm.jsx)
+│   │   │   │   ├── UserForm.jsx
+│   │   │   │   └── UserList.jsx
+│   │   │   └── pages/        # User management page
+│   │   │       └── UserManagement.jsx
+│   │   ├── contact/          # Contact info management feature
+│   │   │   ├── components/   # Contact management components (e.g., ContactForm.jsx)
+│   │   │   │   └── ContactForm.jsx
+│   │   │   └── pages/        # Contact management page
+│   │   │       └── ContactInfo.jsx
+│   │   ├── resumes/          # Resume management feature
+│   │   │   ├── components/   # Resume management components (e.g., ResumeForm.jsx)
+│   │   │   │   ├── ResumeForm.jsx
+│   │   │   │   └── ResumeList.jsx
+│   │   │   └── pages/        # Resume management page
+│   │   │       └── ResumeManagement.jsx
+│   │   └── projects/         # Project management feature
+│   │       ├── components/   # Project management components (e.g., ProjectForm.jsx)
+│   │       │   ├── ProjectForm.jsx
+│   │       │   └── ProjectList.jsx
+│   │       └── pages/        # Project management page
+│   │           └── ProjectManagement.jsx
+│   ├── shared/               # Shared resources across features
+│   │   ├── components/       # Reusable UI components (e.g., Button.jsx)
+│   │   │   ├── Button.jsx
+│   │   │   ├── Input.jsx
+│   │   │   └── Modal.jsx
+│   │   ├── hooks/            # Shared custom hooks
+│   │   │   └── useApi.js
+│   │   └── utils/            # Utility functions
+│   │       └── formatDate.js
+│   ├── services/             # API service files for backend communication
+│   │   └── api.js            # Centralized API calls
+│   ├── context/              # Global state management (e.g., authentication)
+│   │   └── AuthContext.js    # Context for auth state
+│   ├── assets/               # Static assets like images or fonts
+│   │   └── logo.png          # Example asset
+│   ├── constants/            # Constants for the app
+│   │   ├── apiEndpoints.js   # API endpoint URLs
+│   │   └── roles.js          # User roles or other fixed values
+│   ├── App.jsx               # Main app component with routing
+│   └── main.jsx              # Entry point for the Vite React app
+├── vite.config.js            # Vite configuration file
+├── package.json              # Project dependencies and scripts
+├── .env                      # Environment variables (e.g., VITE_API_URL)
+├── .gitignore                # Files and folders to ignore in Git
+└── README.md                 # Project documentation
