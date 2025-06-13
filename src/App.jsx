@@ -9,7 +9,7 @@ function App() {
     <AppProvider>
       <Routes>
         <Route path="/login" element={<Login />}/>
-        <Route element={<PrivateRoutes />}>
+        <Route path="/" element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<h1>test</h1>}/>
         </Route>
       </Routes>
