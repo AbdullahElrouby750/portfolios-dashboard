@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Navigate } from "react-router";
 import { useAuthGet } from "../../../shared/hooks/APIs hooks/useAuthApi";
 import useAuth from "../../../shared/hooks/conetext-hooks/useAuth";
+import LoadingScrean from "../../../shared/components/state-screens/LoadingScreen";
 
 
 function Login() {
@@ -14,7 +15,7 @@ function Login() {
         },[data, login])
 
     if (isLoading)
-        return <div className=" h-full w-full flex justify-center align-middle">Logging in...</div>
+        return <LoadingScrean loadingText={'logging in'}/>
     if (isSuccess)
         return <Navigate to={'/dashboard'} />
     return (
