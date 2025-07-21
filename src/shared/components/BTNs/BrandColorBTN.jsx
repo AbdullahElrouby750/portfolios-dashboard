@@ -1,10 +1,11 @@
 import React from 'react'
 import { motion } from 'motion/react'
 
-function BrandColorBTN({ className = "", onClick = () => { }, children }) {
+function BrandColorBTN({ className = "", onClick = () => { }, children, disabled }) {
     return (
         <motion.button
             onClick={onClick}
+            disabled={disabled}
             className={`rounded-lg py-2 font-medium
             transition-colors duration-300 
             ${className} 
@@ -15,7 +16,9 @@ function BrandColorBTN({ className = "", onClick = () => { }, children }) {
             active:border-1 active:border-neutral-dark-borders active:shadow-lg
             dark:bg-brand-dark-default 
             dark:hover:bg-brand-dark-dark 
-            dark:active:bg-brand-dark-active`}
+            dark:active:bg-brand-dark-active
+            disabled:bg-brand-disabled disabled:hover:bg-brand-disabled disabled:active:bg-brand-disabled
+            `}
 
         >
             {children}

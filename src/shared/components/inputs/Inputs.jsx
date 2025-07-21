@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 //eslint-disable-next-line
 import { motion } from 'motion/react'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 
 function Inputs({
@@ -12,17 +13,19 @@ function Inputs({
     className, lightBg }) {
 
     const variants = {
-        normal: {x: 0},
+        normal: { x: 0 },
         error: {
-            x:[0, 5, 5, -5, 5, -5, 5, -5, 5, -5, 0],
-            transition:{duration: 0.5}
+            x: [0, 5, 5, -5, 5, -5, 5, -5, 5, -5, 0],
+            transition: { duration: 0.5 }
         }
     };
+
+    const [visible, setVisibility] = useState(type === 'password' ? false : true);
     return (
-        <div className={` flex flex-col justify-start align-top px-5 py-3 ${className}`}>
+        <div className={`relative flex flex-col justify-start align-top px-5 py-3 ${className}`}>
             <motion.label className={` text-neutral-text-${lightBg ? 'dark' : 'light'} dark:text-neutral-dark-text-${lightBg ? 'dark' : 'light'} 
             ms-1.5 ${error && 'text-danger-dark-default dark:text-danger-dark-dark-default'}`}>
-                {required && <span className='text-danger-default'>*</span>}{lable}
+                {lable}{required && <span className='text-danger-default'>*</span>}
             </motion.label>
             <motion.input
                 className={`w-full rounded-lg ps-5 mb-1 h-10 border-brand-default dark:border-brand-dark-default border-2 
@@ -35,9 +38,9 @@ function Inputs({
                     text-neutral-text-${lightBg ? 'dark' : 'light'} dark: text-neutral-dark-text-${lightBg ? 'dark' : 'light'} 
                     focus:outline-none focus:border-brand-default dark:focus:border-brand-dark-default
                     ${error && 'border-danger-default dark:border-danger-dark-default  border-2'}
-                    `}
+                    ${className}`}
                 value={value}
-                type={type ?? "text"}
+                type={type === 'password' ? (visible ? 'text' : 'password') : type ?? 'text'}
                 placeholder={placeholder ?? `Enter ${lable ?? 'this field'}'s value`}
                 required={required}
                 onChange={customOnChange ? customOnChange : (e) => {
@@ -69,6 +72,21 @@ function Inputs({
                 variants={variants}
                 animate={error ? "error" : "normal"}
             />
+            {type === 'password' &&
+                <div className={`absolute 
+                text-brand-default hover:text-brand-dark-default active:text-brand-dark-light 
+                ${error && 'text-danger-default hover:text-danger-dark-default active:text-danger-active'}
+                transition-all duration-300 
+                text-2xl ${error ? (value === "" ? 'top-2/5': 'top-1/3') : 'top-1/2'} right-1/10`}>
+                    <button className=' cursor-pointer' onClick={() => setVisibility(!visible)}>
+                        {visible ?
+                            <FaEye />
+                            :
+                            <FaEyeSlash />
+                        }
+                    </button>
+                </div>
+            }
             {error && <motion.p className={` text-xs ms-5 
                 text-danger-dark-default dark:text-danger-dark-dark-default
                 `}>
