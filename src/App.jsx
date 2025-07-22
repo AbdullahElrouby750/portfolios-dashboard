@@ -4,7 +4,8 @@ import AppProvider from "./context/AppProvider";
 import PrivateRoutes from "./shared/components/private-routes/PrivateRoutes";
 import Login from "./features/auth/pages/Login";
 import Auth from "./features/auth/pages/Auth";
-import DashboardLayout from "./features/dashboard/DashboardLayout";
+import Dashboard from "./features/dashboard/pages/Dashboard";
+import Signup from "./features/auth/pages/Signup";
 
 function App() {
 
@@ -15,9 +16,10 @@ function App() {
 
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/" element={<PrivateRoutes />}>
-            <Route path="/dashboard" element={<DashboardLayout />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
       </QueryClientProvider>

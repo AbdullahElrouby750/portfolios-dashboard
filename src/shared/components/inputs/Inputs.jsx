@@ -43,7 +43,7 @@ function Inputs({
                 type={type === 'password' ? (visible ? 'text' : 'password') : type ?? 'text'}
                 placeholder={placeholder ?? `Enter ${lable ?? 'this field'}'s value`}
                 required={required}
-                onChange={customOnChange ? customOnChange : (e) => {
+                onChange={customOnChange ? (e) => customOnChange(e, regex) : (e) => {
                     setValue(e.target.value);
                     if (!e.target.value) {
                         setError(true);
@@ -56,7 +56,7 @@ function Inputs({
                         setError(false);
                     }
                 }}
-                onBlur={customOnBlur ? customOnBlur : (e) => {
+                onBlur={customOnBlur ?  (e) => customOnBlur(e, regex)  : (e) => {
                     if (!e.target.value) {
                         setError(true);
                         setErrMsg(`${lable ?? 'This value'} is required!`);
