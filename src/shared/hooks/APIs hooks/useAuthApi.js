@@ -16,7 +16,6 @@ export const useAuthGet = (path, queryKey) => {
 }
 
 export const useAuthPost = (queryKey) => {
-    console.log('first')
     const queryClient = useQueryClient();
     const mutationFn = (sentData) => authPost(sentData.path, sentData.data);
     const { login } = useAuth();

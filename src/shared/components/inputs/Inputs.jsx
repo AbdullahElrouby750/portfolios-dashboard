@@ -8,7 +8,7 @@ function Inputs({
     value, setValue,
     error, setError,
     errMsg, setErrMsg,
-    lable, type, placeholder, required,
+    lable, fieldName, type, placeholder, required = false,
     customOnChange = null, customOnBlur = null, regex,
     className, lightBg }) {
 
@@ -30,7 +30,7 @@ function Inputs({
             <motion.input
                 className={`w-full rounded-lg ps-5 mb-1 h-10 border-brand-default dark:border-brand-dark-default border-2 
                 placeholder:text-brand-default dark:placeholder:text-brand-dark-default
-                    ${type === 'file' && `file:border file:rounded-4xl file:px-4 file:p-0.5 file:relative file:top-0.5 file:cursor-pointer
+                    ${type === 'file' && `file:border file:rounded-4xl file:px-4 file:p-0.5 file:relative file:top-0.5 file:right-1.5 file:cursor-pointer
                         file:bg-brand-default dark:file:bg-brand-dark-default 
                         hover:file:bg-brand-dark dark:hover:file:bg-brand-dark-dark 
                         active:file:bg-brand-active dark:active:file:bg-brand-dark-active 
@@ -43,8 +43,8 @@ function Inputs({
                 type={type === 'password' ? (visible ? 'text' : 'password') : type ?? 'text'}
                 placeholder={placeholder ?? `Enter ${lable ?? 'this field'}'s value`}
                 required={required}
-                onChange={customOnChange ? (e) => customOnChange(e, regex) : (e) => {
-                    setValue(e.target.value);
+                onChange={customOnChange ? (e) => customOnChange(e, regex, fieldName, required) : (e) => {
+                    type === 'file' ? setValue(e.target.files[0]) : setValue(e.target.value);
                     if (!e.target.value) {
                         setError(true);
                         setErrMsg(`${lable ?? 'Thiis value'} is required!`);
@@ -56,7 +56,7 @@ function Inputs({
                         setError(false);
                     }
                 }}
-                onBlur={customOnBlur ?  (e) => customOnBlur(e, regex)  : (e) => {
+                onBlur={customOnBlur ? (e) => customOnBlur(e, regex, fieldName, required) : (e) => {
                     if (!e.target.value) {
                         setError(true);
                         setErrMsg(`${lable ?? 'This value'} is required!`);
@@ -77,8 +77,8 @@ function Inputs({
                 text-brand-default hover:text-brand-dark-default active:text-brand-dark-light 
                 ${error && 'text-danger-default hover:text-danger-dark-default active:text-danger-active'}
                 transition-all duration-300 
-                text-2xl ${error ? (value === "" ? 'top-2/5': 'top-1/3') : 'top-1/2'} right-1/10`}>
-                    <button className=' cursor-pointer' onClick={() => setVisibility(!visible)}>
+                text-2xl ${error ? (value === "" ? 'top-2/5' : 'top-1/3') : 'top-1/2'} right-1/10`}>
+                    <button type='button' className=' cursor-pointer' onClick={(e) => { e.preventDefault(); setVisibility(!visible) }}>
                         {visible ?
                             <FaEye />
                             :

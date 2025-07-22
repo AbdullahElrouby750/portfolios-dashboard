@@ -1,9 +1,10 @@
 import React from 'react'
 import { motion } from 'motion/react'
 
-function BrandColorBTN({ className = "", onClick = () => { }, children, disabled }) {
+function BrandColorBTN({ className = "", onClick = () => { }, children, disabled, type }) {
     return (
         <motion.button
+            type={type ?? 'button'}
             onClick={onClick}
             disabled={disabled}
             className={`rounded-lg py-2 font-medium

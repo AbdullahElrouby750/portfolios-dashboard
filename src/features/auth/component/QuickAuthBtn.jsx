@@ -1,7 +1,7 @@
 import React from 'react'
-import BrandColorBTN from '../../../../shared/components/BTNs/BrandColorBTN'
+import BrandColorBTN from '../../../shared/components/BTNs/BrandColorBTN'
 
-function QuickLoginBtn({ btnText, goToLink, ThisBrandIcon }) {
+function QuickAuthBtn({ btnText, goToLink, ThisBrandIcon }) {
     return (
         <div className=' w-full'>
             <a href={goToLink} className=' w-full flex justify-center'>
@@ -13,4 +13,4 @@ function QuickLoginBtn({ btnText, goToLink, ThisBrandIcon }) {
     )
 }
 
-export default QuickLoginBtn
+export default QuickAuthBtn
