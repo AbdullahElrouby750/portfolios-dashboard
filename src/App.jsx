@@ -6,6 +6,8 @@ import Login from "./features/auth/pages/Login";
 import Auth from "./features/auth/pages/Auth";
 import Dashboard from "./features/dashboard/pages/Dashboard";
 import Signup from "./features/auth/pages/Signup";
+import DashboardLayout from "./features/dashboard/component/DashboardLayout";
+import Projects from "./features/projects/pages/Projects";
 
 function App() {
 
@@ -19,7 +21,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/" element={<PrivateRoutes />}>
+          <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/projects" element={<Projects />} />
+          </Route>
           </Route>
         </Routes>
       </QueryClientProvider>

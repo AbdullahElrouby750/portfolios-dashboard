@@ -1,9 +1,12 @@
 import React from 'react'
+import { Outlet } from 'react-router'
+import SideBar from './SideBar'
 
-function DashboardLayout({children}) {
+function DashboardLayout() {
     return (
-        <div>
-            {children}
+        <div className=' w-full h-lvh flex bg-neutral-background dark:bg-neutral-dark-background'>
+            <SideBar />
+            <Outlet/>
         </div>
     )
 }

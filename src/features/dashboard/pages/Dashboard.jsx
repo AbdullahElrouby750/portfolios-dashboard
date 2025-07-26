@@ -1,13 +1,12 @@
 import React from 'react'
 import DashboardLayout from '../component/DashboardLayout'
-import useAuth from '../../../shared/hooks/conetext-hooks/useAuth'
+import SideBar from '../component/SideBar'
 
 function Dashboard() {
-    const { user } = useAuth()
     return (
-        <DashboardLayout >
-            <p className=' text-4xl'>succssfully logged in, Hi {user.name ?? 'user'}</p>
-        </DashboardLayout>
+        <div className='flex-1'>
+            <p>Welcome to the dashboard</p>
+        </div>
     )
 }
 
