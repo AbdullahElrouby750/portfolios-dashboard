@@ -12,14 +12,14 @@ export const useApiGet = (path, params, queryKey) => {
     });
 }
 
-export const useApiPost = (queryKey, onSuccessFn = () => { }, onErrorFn = () => { }) => {
+export const useApiPost = (queryKey, onSuccessFn = () => { }, useReturnedDataOnSuccessFn= false, onErrorFn = () => { }) => {
     const queryClient = useQueryClient();
     const mutationFn = (sentData) => apiPost(sentData.path, sentData.data);
     return useMutation({
         mutationFn,
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey });
-            onSuccessFn(data);
+            onSuccessFn(useReturnedDataOnSuccessFn && data);
         },
         onError: (error) => {
             console.error("Error authenticating :: ", error);

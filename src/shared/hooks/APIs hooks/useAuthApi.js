@@ -3,19 +3,19 @@ import { authGet, authPost } from '../../../services/axiosConfig.js/axiosAuthCon
 import useAuth from '../conetext-hooks/useAuth';
 import { useNavigate } from 'react-router';
 
-export const useAuthGet = (path, queryKey) => {
+export const useAuthGet = (path, queryKey, quickloginSuccess = false) => {
     const queryFn = () => authGet(path);
     const { isAuthenticated } = useAuth();
     return useQuery({
         queryKey,
         queryFn: queryFn,
-        enabled: !!(!isAuthenticated && path),
+        enabled: !!((isAuthenticated || quickloginSuccess) && path),
         retry:false,
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
     })
 }
 
-export const useAuthPost = (queryKey) => {
+export const useAuthPost = (queryKey, onSuccessFn) => {
     const queryClient = useQueryClient();
     const mutationFn = (sentData) => authPost(sentData.path, sentData.data);
     const { login } = useAuth();
@@ -25,6 +25,7 @@ export const useAuthPost = (queryKey) => {
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey });
             console.log('data:: ', data);
+            onSuccessFn(false);
             login(data);
             navigator('/dashboard')
         },

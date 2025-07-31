@@ -7,20 +7,22 @@ import LoginLayout from "../component/login/LoginLayout";
 
 
 function Login() {
-        const {login} = useAuth();
+        const {login, setLoggedOut, loggedOut} = useAuth();
         const { data, isLoading, isSuccess, error:QuickLoginError } = useAuthGet('/user' ,['currentUser', 'auth']);
         useEffect(()=>{
-            if(data){
+            
+            if(data && !QuickLoginError && !loggedOut){
+                console.log('from if login', data)
                 login(data)
             }
-        },[data, login]);
+        },[data, login, QuickLoginError, loggedOut]);
 
         
-    const {mutate, isPending,  error: simpleloginError} = useAuthPost(['normal','login']);
+    const {mutate, isPending,  error: simpleloginError} = useAuthPost(['normal','login'], setLoggedOut);
 
     if (isLoading || isPending)
         return <LoadingScrean loadingText={'logging in'}/>
-    if (isSuccess)
+    if (isSuccess && !loggedOut)
         return <Navigate to={'/dashboard'} />
     return <LoginLayout simpleLogInMutate={mutate} logInError={QuickLoginError || simpleloginError}/>
 }
