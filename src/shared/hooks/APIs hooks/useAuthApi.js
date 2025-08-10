@@ -9,7 +9,7 @@ export const useAuthGet = (path, queryKey, quickloginSuccess = false) => {
     return useQuery({
         queryKey,
         queryFn: queryFn,
-        enabled: !!((isAuthenticated || quickloginSuccess) && path),
+        enabled: !!( path),
         retry:false,
         refetchOnWindowFocus: false,
     })

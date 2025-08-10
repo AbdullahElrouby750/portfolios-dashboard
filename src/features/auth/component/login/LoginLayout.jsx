@@ -27,7 +27,7 @@ function LoginLayout({ simpleLogInMutate, logInError }) {
 
             <div className=' w-full h-1/4 flex flex-col items-center justify-around '>
                 <QuickAuthBtn btnText={"Login with google"} ThisBrandIcon={FcGoogle} goToLink={googleOAuthLink} />
-                <QuickAuthBtn btnText={"Login with gitHub"} ThisBrandIcon={FaGithub} goToLink={githubOAuthLink} />
+                <QuickAuthBtn btnText={"Login with github"} ThisBrandIcon={FaGithub} goToLink={githubOAuthLink} />
             </div>
 
             <div>

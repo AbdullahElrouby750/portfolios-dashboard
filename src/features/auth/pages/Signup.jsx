@@ -21,8 +21,8 @@ function Signup() {
         <AuthsPagesLayout>
             <Welcoming loginOrSignUp={false} />
             <div className=' w-full h-2/3 flex flex-col items-center justify-around '>
-                <QuickAuthBtn btnText={"Login with google"} ThisBrandIcon={FcGoogle} goToLink={googleOAuthLink} />
-                <QuickAuthBtn btnText={"Login with gitHub"} ThisBrandIcon={FaGithub} goToLink={githubOAuthLink} />
+                <QuickAuthBtn btnText={"Sign up with google"} ThisBrandIcon={FcGoogle} goToLink={googleOAuthLink} />
+                <QuickAuthBtn btnText={"Sign up with github"} ThisBrandIcon={FaGithub} goToLink={githubOAuthLink} />
             </div>
             <FormLayout>
                 <SimpleAuthTitle />

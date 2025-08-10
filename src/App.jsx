@@ -7,7 +7,13 @@ import Auth from "./features/auth/pages/Auth";
 import Dashboard from "./features/dashboard/pages/Dashboard";
 import Signup from "./features/auth/pages/Signup";
 import DashboardLayout from "./features/dashboard/component/DashboardLayout";
+import Profile from './features/profile/pages/Profile';
+import Users from './features/users/pages/Users';
+import Puser from './features/portfolioUser/pages/Puser';
 import Projects from "./features/projects/pages/Projects";
+import Resumes from './features/resumes/pages/Resumes';
+import Contact from './features/contact/pages/Contact';
+import Themes from './features/themes/pages/Themes';
 
 function App() {
 
@@ -23,7 +29,13 @@ function App() {
           <Route path="/" element={<PrivateRoutes />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />}/>
+            <Route path="/users" element={<Users/>}/>
+            <Route path="/portfolio-user" element={<Puser/>}/>
             <Route path="/projects" element={<Projects />} />
+            <Route path="/resumes" element={<Resumes/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+            <Route path="/themes" element={<Themes/>}/>
           </Route>
           </Route>
         </Routes>

@@ -2,6 +2,7 @@ import React from 'react'
 import useFormValidate from '../../hooks/useFormValidate'
 import Inputs from '../../../../shared/components/inputs/Inputs';
 import BrandColorBTN from '../../../../shared/components/BTNs/BrandColorBTN';
+import useAuth from '../../../../shared/hooks/conetext-hooks/useAuth';
 
 const emailRegex = new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
 const passwordRegex = new RegExp('^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$');
@@ -9,7 +10,7 @@ const phoneRegex = new RegExp(/^(\+\d{1,3})?[\s-]?\d{1,4}[\s-]?\d{1,4}[\s-]?\d{1
 
 function UserDataForm({ signupFn }) {
     const { values, errors, errorMsgs, handleChange, handleBlur, handleSubmit } = useFormValidate();
-
+    const {setLoggedOut} = useAuth()
     return (
         <form onSubmit={e => { e.preventDefault(); handleSubmit('/signup', signupFn, true, ["profileImg","phoneNumber", "accessAllowed"]) }} className=' flex flex-col justify-around items-center'>
             <div className=' w-full flex'>
@@ -89,7 +90,7 @@ function UserDataForm({ signupFn }) {
             </div>
 
             <div className=' w-full flex justify-center'>
-                <BrandColorBTN disabled={((errors.name || errors.email || errors.role || errors.password || errors.phoneNumber) || !(values.name && values.email && values.role && values.password)) } type={'submit'} className=' w-1/4'>submit</BrandColorBTN>
+                <BrandColorBTN onClick={() => setLoggedOut(false)} disabled={((errors.name || errors.email || errors.role || errors.password || errors.phoneNumber) || !(values.name && values.email && values.role && values.password)) } type={'submit'} className=' w-1/4'>submit</BrandColorBTN>
             </div>
         </form>
     )

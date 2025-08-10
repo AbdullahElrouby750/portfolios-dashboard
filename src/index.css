@@ -55,28 +55,12 @@
 }
 
 
-
-om-scrollbar::-webkit-scrollbar-track {
-        background: hsl(0, 0%, 50%);
-        /* Track background */
-        border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #888;
-        /* Thumb color */
-        border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #555;
-        /* Thumb color on hover */
-}
-
-/* Firefox support */
-.custom-scrollbar {
+:root {
         scrollbar-width: thin;
-        /* "auto", "thin", or "none" */
-        scrollbar-color: #888 #f1f1f1;
-        /* thumb, track */
+}
+
+body {
+        scrollbar-color: #7a098f transparent;
+        scrollbar-width: thin;
+        scroll-behavior: auto;
 }

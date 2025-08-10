@@ -18,18 +18,20 @@ function SideBarList({ icon, title, navigateTo, profileImg, profileImgPlaceholde
         ${isActive ? 'text-brand-default dark:text-brand-dark-default' : 'text-neutral-text-dark dark:text-neutral-text-light'}`
             }}
         >
-            {profileImg ? <div className=" w-1/5 h-full rounded-4xl overflow-hidden bg-red-400 flex justify-center items-baseline relative bottom-1.5">
+            <div className=" flex justify-end">
+                <p className=" self-end w-full text-start">{title}</p>
+            </div>
+            {profileImg ? <div className=" w-1/6 h-full rounded-4xl overflow-hidden bg-red-400 flex justify-center items-baseline relative bottom-1.5">
                 <img src={profileImg} alt="user profile img" className=" text-neutral-text-light text-sm" onError={(e) => {
                     e.target.src = profileImgPlaceholder;
                     e.target.alt = "defulte Profile PlaceHolder"
-                }}/> 
+                }} />
             </div>
                 :
                 <BrandColorIcons className={`group-hover:rotate-z-5 group-hover:scale-110 
-                ${isActive && 'rotate-z-5 scale-110'}
+                ${isActive && 'rotate-z-5 scale-120'}
                 transition-all duration-300 ms-1`} Icon={icon} />
             }
-            {title}
         </NavLink>
     </li>
 }
