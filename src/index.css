@@ -36,12 +36,12 @@
         --color-danger-default: #f44336;
         --color-danger-dark: #d32f2f;
         --color-danger-active: #c62828;
-        --color-dangerisabled: #ffcdd2;
+        --color-danger-disabled: #ffcdd2;
 
         --color-danger-dark-default: #ef5350;
         --color-danger-dark-dark: #f44336;
         --color-danger-dark-active: #d32f2f;
-        --color-danger-darkisabled: #c62828;
+        --color-danger-dark-disabled: #c62828;
 
         --color-secondary-default: #9e9e9e;
         --color-secondary-dark: #757575;

@@ -15,9 +15,9 @@ export const apiGet = async (path, params) => {
 }
 
 
-export const apiPost = async (path, data) => {
+export const apiPost = async (path, data, params) => {
     try {
-        const response = await api.post(path, data, { withCredentials: true });
+        const response = await api.post(path, data, {  params: params, withCredentials: true });
         console.log('response:: ', response)
         return response.data;
     } catch (error) {
@@ -27,9 +27,9 @@ export const apiPost = async (path, data) => {
 }
 
 
-export const apiPut = async (path, data) => {
+export const apiPut = async (path, data, params) => {
     try {
-        const response = await api.put(path, data, { withCredentials: true });
+        const response = await api.put(path, data, {  params: params, withCredentials: true });
         console.log('response:: ', response)
         return response.data;
     } catch (error) {
@@ -39,9 +39,11 @@ export const apiPut = async (path, data) => {
 }
 
 
-export const apiDelete = async (path) => {
+export const apiDelete = async (path, params) => {
     try {
-        const response = await api.put(path, null, { withCredentials: true });
+        console.log('params:: ', params)
+        console.log('path:: ', path)
+        const response = await api.delete(path, {  params: params, withCredentials: true });
         console.log('response:: ', response)
         return response.data;
     } catch (error) {

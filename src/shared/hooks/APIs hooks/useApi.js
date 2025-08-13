@@ -17,9 +17,9 @@ export const useApiPost = (queryKey, onSuccessFn = () => { }, useReturnedDataOnS
     const mutationFn = (sentData) => apiPost(sentData.path, sentData.data);
     return useMutation({
         mutationFn,
-        onSuccess: (data) => {
+        onSuccess: (returnedData, sentData) => {
             queryClient.invalidateQueries({ queryKey });
-            onSuccessFn(useReturnedDataOnSuccessFn && data);
+            onSuccessFn(returnedData, sentData);
         },
         onError: (error) => {
             console.error("Error authenticating :: ", error);
@@ -33,9 +33,9 @@ export const useApiPut = (queryKey, onSuccessFn = () => { }, onErrorFn = () => {
     const mutationFn = (sentData) => apiPut(sentData.path, sentData.data);
     return useMutation({
         mutationFn,
-        onSuccess: (data) => {
+        onSuccess: (returnedData, sentData) => {
             queryClient.invalidateQueries({ queryKey });
-            onSuccessFn(data);
+            onSuccessFn(returnedData, sentData);
         },
         onError: (error) => {
             console.error("Error authenticating :: ", error);
@@ -46,12 +46,12 @@ export const useApiPut = (queryKey, onSuccessFn = () => { }, onErrorFn = () => {
 
 export const useApiDelete = (queryKey, onSuccessFn = () => { }, onErrorFn = () => { }) => {
     const queryClient = useQueryClient();
-    const mutationFn = (sentData) => apiDelete(sentData.path);
+    const mutationFn = (data) => apiDelete(data.path, data.params );
     return useMutation({
         mutationFn,
-        onSuccess: (data) => {
+        onSuccess: (returnedData, sentData) => {
             queryClient.invalidateQueries({ queryKey });
-            onSuccessFn(data);
+            onSuccessFn(returnedData, sentData);
         },
         onError: (error) => {
             console.error("Error authenticating :: ", error);

@@ -90,7 +90,7 @@ function UserDataForm({ signupFn }) {
             </div>
 
             <div className=' w-full flex justify-center'>
-                <BrandColorBTN onClick={() => setLoggedOut(false)} disabled={((errors.name || errors.email || errors.role || errors.password || errors.phoneNumber) || !(values.name && values.email && values.role && values.password)) } type={'submit'} className=' w-1/4'>submit</BrandColorBTN>
+                <BrandColorBTN lightBg={true} onClick={() => setLoggedOut(false)} disabled={((errors.name || errors.email || errors.role || errors.password || errors.phoneNumber) || !(values.name && values.email && values.role && values.password)) } type={'submit'} className=' w-1/4'>submit</BrandColorBTN>
             </div>
         </form>
     )

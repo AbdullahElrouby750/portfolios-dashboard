@@ -66,7 +66,9 @@ function LoginLayout({ simpleLogInMutate, logInError }) {
                     <BrandColorBTN
                         onClick={() => (!emailErr && !passErr && emailVal && passVal) && simpleLogInMutate({ path: '/login', data: { email: emailVal, password: passVal } })}
                         className=' w-1/4'
-                        disabled={emailErr || passErr || !(emailVal && passVal)}>
+                        disabled={emailErr || passErr || !(emailVal && passVal)}
+                        lightBg={true}
+                        >
                         Login
                     </BrandColorBTN>
                 </div>
