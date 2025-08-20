@@ -9,7 +9,7 @@ function Inputs({
     error, setError,
     errMsg, setErrMsg,
     lable, fieldName, type, placeholder, required = false,
-    customOnChange = null, customOnBlur = null, regex,
+    customOnChange = null, customOnBlur = null, onKeyPress=null, regex,
     className, lightBg }) {
 
     const variants = {
@@ -68,6 +68,7 @@ function Inputs({
                         setError(false);
                     }
                 }}
+                onKeyPress={onKeyPress ? onKeyPress : () => {}}
                 accept={type === 'file' && 'image/*, .pdf, .doc, .docx, .txt, .csv, .xlsx'}
                 variants={variants}
                 animate={error ? "error" : "normal"}
