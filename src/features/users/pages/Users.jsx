@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import UserBar from '../component/UserBar'
 import TableDisplayLayout from '../../../shared/components/tables/TableDisplayLayout'
-import TabledPageInfo from '../../../shared/components/tables/TabledPageInfo'
+import PageInfo from '../../../shared/components/PageInfo'
 import { useApiDelete, useApiGet } from '../../../shared/hooks/APIs hooks/useApi'
 import LoadingScrean from '../../../shared/components/state-screens/LoadingScreen'
 import useAuth from '../../../shared/hooks/conetext-hooks/useAuth'
@@ -51,7 +51,7 @@ function Users() {
 
     return (
         <div className=' grow h-full flex flex-col justify-between items-center p-4.5'>
-            {totlalUsersCount && <TabledPageInfo title='users' info={rolesCount} infoKeyName={['role', 'count', 'permissions']} totalCount={totlalUsersCount} />}
+            {totlalUsersCount && <PageInfo title='users' info={rolesCount} infoKeyName={['role', 'count', 'permissions']} totalCount={totlalUsersCount} />}
             <TableDisplayLayout tableHeadValuesArr={tableHeadValuesArr} tableHeadSpaceingArr={tableHeadSpaceingArr} sensativeData={sensativeData} queryKey={queryKey} setSearch={setSearch} isLoading={isFetching} searchVal={search}>
                 {(!!users && !gettingUsersError) && users.map(user => <UserBar key={user._id} userData={user} loggedInUserId={loggedinUser._id} loggedInUseRole={loggedinUser.role} haveAccess={loggedinUser.accessAllowed} deleteFn={deleteUser} />)}
             </TableDisplayLayout>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TabledPageInfo({info = [], infoKeyName = [], title = '', totalCount = 0}) {
+function PageInfo({info = [], infoKeyName = [], title = '', totalCount = 0}) {
     return (
         <div className=' w-full grow mb-2 p-3.5 rounded-2xl text-neutral-text-dark dark:text-neutral-dark-text-light
                         flex flex-col justify-around items-center
@@ -23,4 +23,4 @@ function TabledPageInfo({info = [], infoKeyName = [], title = '', totalCount = 0
     )
 }
 
-export default TabledPageInfo
+export default PageInfo

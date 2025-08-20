@@ -20,6 +20,7 @@ function BrandColorBTN({ className = "", onClick = () => { }, children, disabled
             dark:hover:bg-brand-dark-default 
             dark:active:bg-brand-dark-active
             disabled:bg-brand-disabled disabled:hover:bg-brand-disabled disabled:active:bg-brand-disabled
+            cursor-pointer
             `}
 
         >

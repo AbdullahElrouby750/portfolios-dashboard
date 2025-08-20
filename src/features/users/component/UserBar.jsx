@@ -20,7 +20,7 @@ function UserBar({ userData, loggedInUserId, loggedInUseRole, haveAccess, delete
         rounded-2xl my-4.5 px-3.5 py-1
         transition-all duration-300'
         >
-            <div className=' w-1/12 h-full flex justify-center items-center cursor-pointer'>
+            <div className=' w-1/12 h-full flex justify-center items-center cursor-pointer hover:shadow-brand-dark shadow-xl rounded-4xl transition-shadow duration-300'>
                 <ProfileImg profileImg={userData.profileImg} profileImgStyle={'w-1/2'} />
             </div>
 

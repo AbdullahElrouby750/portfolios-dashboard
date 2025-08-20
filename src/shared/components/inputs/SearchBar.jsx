@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
-import Inputs from '../inputs/Inputs'
+import Inputs from './Inputs'
 import BrandColorIcons from '../Icons/BrandColorIcon';
 import { FaSearch } from 'react-icons/fa';
+import { useQueryClient } from '@tanstack/react-query'
 
-function SearchBar({ searchVal, setSearchVal, queryClient, queryKey }) {
+
+function SearchBar({ searchVal, setSearchVal, queryKey }) {
+    const queryClient = useQueryClient()
     const [val, setval] = useState('');
     const [err, setErr] = useState(false);
     const customOnChange = (e) => {
         setval(e.target.value)
         if (e.target.value)
             setErr(false);
-        if( !e.target.value && searchVal) {
+        if (!e.target.value && searchVal) {
             setErr(false);
-            setSearchVal(null);
-            queryClient.invalidateQueries({ queryKey });
+            handleClick();
         }
     }
 
