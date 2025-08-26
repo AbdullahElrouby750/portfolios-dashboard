@@ -26,7 +26,7 @@ function Users() {
         if (!groupedUsers) return []
         groupedUsers.sort((a, b) => a._id.localeCompare(b._id));
         setTotlalUsersCount(groupedUsers?.reduce((acc, current) => acc + current.count, 0));
-        return groupedUsers.flatMap(group => group.users)
+        return groupedUsers.flatMap(group => group.list)
     }, [groupedUsers])
 
     const rolesCount = groupedUsers && groupedUsers?.map(group => {
