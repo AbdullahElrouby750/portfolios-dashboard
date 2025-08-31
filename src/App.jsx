@@ -14,6 +14,8 @@ import Projects from "./features/projects/pages/Projects";
 import Resumes from './features/resumes/pages/Resumes';
 import Contact from './features/contact/pages/Contact';
 import Themes from './features/themes/pages/Themes';
+import ModalWrapper from "./shared/components/modal/ModalWrapper";
+import AddModal from "./features/projects/component/AddModal";
 
 function App() {
 
@@ -27,16 +29,18 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/" element={<PrivateRoutes />}>
-          <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />}/>
-            <Route path="/users" element={<Users/>}/>
-            <Route path="/portfolio-user" element={<Puser/>}/>
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/resumes" element={<Resumes/>}/>
-            <Route path="/contact" element={<Contact/>}/>
-            <Route path="/themes" element={<Themes/>}/>
-          </Route>
+            <Route element={<DashboardLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/portfolio-user" element={<Puser />} />
+              <Route path="/projects" element={<Projects />}>
+                <Route path="add" element={<AddModal />} />
+              </Route>
+              <Route path="/resumes" element={<Resumes />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/themes" element={<Themes />} />
+            </Route>
           </Route>
         </Routes>
       </QueryClientProvider>

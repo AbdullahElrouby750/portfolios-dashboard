@@ -15,7 +15,7 @@ function SearchBar({ searchVal, setSearchVal, queryKey }) {
             setErr(false);
         if (!e.target.value && searchVal) {
             setErr(false);
-            handleClick();
+            queryClient.invalidateQueries({ queryKey });
         }
     }
 

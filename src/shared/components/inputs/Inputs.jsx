@@ -3,22 +3,22 @@ import React, { useState } from 'react'
 import { motion } from 'motion/react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
+const variants = {
+    normal: { x: 0 },
+    error: {
+        x: [0, 5, 5, -5, 5, -5, 5, -5, 5, -5, 0],
+        transition: { duration: 0.5 }
+    }
+};
+
 
 function Inputs({
     value, setValue,
     error, setError,
     errMsg, setErrMsg,
     lable, fieldName, type, placeholder, required = false,
-    customOnChange = null, customOnBlur = null, onKeyPress=null, regex,
+    customOnChange = null, customOnBlur = null, onKeyPress = null, regex,
     className, lightBg }) {
-
-    const variants = {
-        normal: { x: 0 },
-        error: {
-            x: [0, 5, 5, -5, 5, -5, 5, -5, 5, -5, 0],
-            transition: { duration: 0.5 }
-        }
-    };
 
     const [visible, setVisibility] = useState(type === 'password' ? false : true);
     return (
@@ -68,7 +68,7 @@ function Inputs({
                         setError(false);
                     }
                 }}
-                onKeyPress={onKeyPress ? onKeyPress : () => {}}
+                onKeyPress={onKeyPress ? onKeyPress : () => { }}
                 accept={type === 'file' && 'image/*, .pdf, .doc, .docx, .txt, .csv, .xlsx'}
                 variants={variants}
                 animate={error ? "error" : "normal"}

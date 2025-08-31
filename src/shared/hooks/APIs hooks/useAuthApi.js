@@ -25,7 +25,7 @@ export const useAuthPost = (queryKey, onSuccessFn) => {
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey });
             console.log('data:: ', data);
-            onSuccessFn(false);
+            onSuccessFn && onSuccessFn(false);
             login(data);
             navigator('/dashboard')
         },

@@ -1,11 +1,15 @@
 import { useState } from "react";
 import convertToFormData from "../../../shared/utils/convertToFormData";
-function useFormValidate() {
-    //todo: send them to the hook and make it dynamic
-    const [values, setValues] = useState({ name: '', email: '', role: 'user', password: '', profileImg: '', phoneNumber: '', accessAllowed: false });
-    const [errors, setErrors] = useState({ name: false, email: false, role: false, password: false, profileImg: false, phoneNumber: false, accessAllowed: false });
-    const [errorMsgs, setErrorMsgs] = useState({ name: '', email: '', role: '', password: '', profileImg: '', phoneNumber: '', accessAllowed: "" });
-    //todo: send them to the hook and make it dynamic
+function useFormValidate(states = {
+                    values: null, setValues: () =>{},
+                    errors: null, setErrors: () =>{},
+                    errorMsgs: null, setErrorMsgs: () =>{},}) {
+    const {values, setValues, errors, setErrors, errorMsgs, setErrorMsgs} = states
+    // //todo: send them to the hook and make it dynamic
+    // const [values, setValues] = useState({ name: '', email: '', role: 'user', password: '', profileImg: '', phoneNumber: '', accessAllowed: false });
+    // const [errors, setErrors] = useState({ name: false, email: false, role: false, password: false, profileImg: false, phoneNumber: false, accessAllowed: false });
+    // const [errorMsgs, setErrorMsgs] = useState({ name: '', email: '', role: '', password: '', profileImg: '', phoneNumber: '', accessAllowed: "" });
+    // //todo: send them to the hook and make it dynamic
 
     const handleChange = (e, regex, fieldName, fileRequired) => {
         e.target.type === 'file' ? setValues(v => ({ ...v, [fieldName]: e.target.files[0] })) : setValues(v => ({ ...v, [fieldName]: e.target.value }));

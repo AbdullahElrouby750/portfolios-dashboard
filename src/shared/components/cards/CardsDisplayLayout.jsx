@@ -6,7 +6,7 @@ function CardsDisplayLayout({ children, isLoading, searchVal, setSearchVal, quer
 
   if (isLoading && searchVal) return <LoadingScrean loadingText={'Searching'} />
   return (
-    <div className=' w-full h-120 p-2.5 rounded-xl overflow-y-scroll
+    <div className=' w-full h-110 p-2.5 rounded-xl overflow-y-scroll
             dark:shadow-neutral-borders shadow-neutral-dark-borders shadow-2xl 
             flex flex-col justify-stretch items-center relative
             '>
