@@ -17,7 +17,7 @@ function Inputs({
     error, setError,
     errMsg, setErrMsg,
     lable, fieldName, type, placeholder, required = false,
-    customOnChange = null, customOnBlur = null, onKeyPress = null, regex,
+    customOnChange = null, customOnBlur = null, onKeyPress = null, regex = null,
     className, lightBg }) {
 
     const [visible, setVisibility] = useState(type === 'password' ? false : true);

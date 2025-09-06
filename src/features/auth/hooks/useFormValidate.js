@@ -1,4 +1,3 @@
-import { useState } from "react";
 import convertToFormData from "../../../shared/utils/convertToFormData";
 function useFormValidate(states = {
                     values: null, setValues: () =>{},
@@ -12,7 +11,11 @@ function useFormValidate(states = {
     // //todo: send them to the hook and make it dynamic
 
     const handleChange = (e, regex, fieldName, fileRequired) => {
-        e.target.type === 'file' ? setValues(v => ({ ...v, [fieldName]: e.target.files[0] })) : setValues(v => ({ ...v, [fieldName]: e.target.value }));
+        if (e.target.type === 'file') 
+            setValues(v => ({ ...v, [fieldName]: e.target.files[0] })) 
+        else
+            setValues(v => ({ ...v, [fieldName]: e.target.value }));
+
         if (((e.target.type !== 'file' && !e.target.value)) || (fileRequired && e.target.type === 'file' && !e.target.files)) {
             setErrors(e => ({ ...e, [fieldName]: true }));
             setErrorMsgs(em => ({ ...em, [fieldName]: `${fieldName} is required!` }));
@@ -36,7 +39,7 @@ function useFormValidate(states = {
         }
     }
 
-    const handleSubmit = (path, apiCallFn, convertDataToFileType, skipKeys = []) => {
+    const handleSubmit = (path, apiCallFn, convertDataToFileType, skipKeys = [], params = null) => {
         console.log("from handleSubmit", path, apiCallFn, convertDataToFileType, skipKeys);
         let errorSpotted = false;
         Object.entries(values).map(([key, value]) => {
@@ -48,10 +51,16 @@ function useFormValidate(states = {
         })
         if (errorSpotted) return
         let data = values;
+        let formData = new FormData();
         if (convertDataToFileType) {
-            data = convertToFormData(values);
+            formData = convertToFormData(values);
         }
-        apiCallFn({ path, data });
+        const dataToSend = {
+            path,
+            data: convertDataToFileType ? formData : data,
+            params
+        }
+        apiCallFn(dataToSend);
     }
     return { values, setValues, errors, setErrors, errorMsgs, setErrorMsgs, handleChange, handleBlur, handleSubmit }
 }
