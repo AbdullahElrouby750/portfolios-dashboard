@@ -4,14 +4,14 @@ import CardBody from './CardBody'
 import CardFooter from './CardFooter'
 import BrandColorBTN from '../BTNs/BrandColorBTN'
 
-function Card() {
+function Card({cardData, cardKeys, typeValues, loggedInUserData, userUploadedByData}) {
     return (
         <div className=' w-1/4 aspect-4/6 rounded-2xl text-neutral-text-light overflow-hidden'>
-            <CardHeader />
-            <CardBody >
+            <CardHeader title={cardData[cardKeys.title]} type={cardData[cardKeys.type]} typeValues={typeValues}/>
+            <CardBody screenShot={cardData[cardKeys.bodyCover]} imgOrPdf>
                 <BrandColorBTN className=' w-full rounded-none'>More Info</BrandColorBTN>
             </CardBody>
-            <CardFooter />
+            <CardFooter by={userUploadedByData[cardKeys.by]} since={cardData[cardKeys.since]} portfolio={cardData[cardKeys.portfolio]}/>
         </div>
     )
 }

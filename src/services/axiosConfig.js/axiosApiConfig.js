@@ -17,6 +17,9 @@ export const apiGet = async (path, params) => {
 
 export const apiPost = async (path, data, params) => {
     try {
+        console.log('path::', path)
+        console.log('data::', data)
+        console.log('params::', params)
         const response = await api.post(path, data, {  params: params, withCredentials: true });
         console.log('response:: ', response)
         return response.data;

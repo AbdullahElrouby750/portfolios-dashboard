@@ -39,7 +39,7 @@ function useFormValidate(states = {
         }
     }
 
-    const handleSubmit = (path, apiCallFn, convertDataToFileType, skipKeys = [], params = null) => {
+    const handleSubmit = (path, apiCallFn, convertDataToFileType, skipKeys = [], successFn = () => {}, params = null) => {
         console.log("from handleSubmit", path, apiCallFn, convertDataToFileType, skipKeys);
         let errorSpotted = false;
         Object.entries(values).map(([key, value]) => {
@@ -61,6 +61,7 @@ function useFormValidate(states = {
             params
         }
         apiCallFn(dataToSend);
+        successFn();
     }
     return { values, setValues, errors, setErrors, errorMsgs, setErrorMsgs, handleChange, handleBlur, handleSubmit }
 }

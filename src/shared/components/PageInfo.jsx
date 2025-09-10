@@ -14,9 +14,7 @@ function PageInfo({info = [], infoKeyName = [], title = '', totalCount = 0}) {
 
             <div className=' w-full flex flex-wrap gap-1 justify-around items-center'>
                 {(info && infoKeyName && info.length === infoKeyName.length !== 0) && info.map(i => <div className=' w-1/4 flex flex-col justify-center items-start' key={i[infoKeyName[0]]}>
-                    <p className=' text-start text-xl'>{`${infoKeyName[0]} : ${i[infoKeyName[0]]}`}</p>
-                    <p className=' text-start text-xl'>{`${infoKeyName[1]} : ${i[infoKeyName[1]]}`}</p>
-                    <p className=' text-start text-xl'>{`${infoKeyName[2]} : ${i[infoKeyName[2]]}`}</p>
+                    {infoKeyName.map((key) => <p className=' text-start text-xl'>{`${key} : ${i[key]}`}</p>)}
                 </div>)}
             </div>
         </div>

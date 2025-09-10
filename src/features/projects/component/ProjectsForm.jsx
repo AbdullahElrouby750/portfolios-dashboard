@@ -8,8 +8,8 @@ import useFormValidate from '../../auth/hooks/useFormValidate'
 import useStore from '../../../shared/hooks/conetext-hooks/useStore'
 
 function ProjectsForm({ onHide }) {
-    const {request} = useStore()
-    const [fieldsValues, setFieldsValues] = useState(request?.data ?? { projectTitle: '', projectType: 0, projectGitHubLink: '', projectDemoLink: '', projectAvailability: true, projectCreationDate: '', projectScreenshot: '', projectDescription: '' })
+    const { request } = useStore()
+    const [fieldsValues, setFieldsValues] = useState(request?.data ?? { projectTitle: '', projectType: 1, projectGitHubLink: '', projectDemoLink: '', projectAvailability: true, projectCreationDate: '', projectScreenshot: '', projectDescription: '' })
     const [fieldsErrors, setFieldsErrors] = useState({ projectTitle: false, projectType: false, projectGitHubLink: false, projectDemoLink: false, projectAvailability: false, projectCreationDate: false, projectScreenshot: false, projectDescription: false })
     const [fieldsErrorMsgs, setFieldsErrorMsgs] = useState({ projectTitle: '', projectType: '', projectGitHubLink: '', projectDemoLink: '', projectAvailability: '', projectCreationDate: '', projectScreenshot: '', projectDescription: '' })
 
@@ -19,14 +19,15 @@ function ProjectsForm({ onHide }) {
         errorMsgs: fieldsErrorMsgs, setErrorMsgs: setFieldsErrorMsgs
     })
     return (
-        <form className=' w-full flex flex-col justify-around items-center' onSubmit={e => { 
-            e.preventDefault(); 
+        <form className=' w-full flex flex-col justify-around items-center' onSubmit={e => {
+            e.preventDefault();
             handleSubmit(
-                request.path, 
-                request.apiFn, 
-                true, 
+                request.path,
+                request.apiFn,
+                true,
                 ['projectGitHubLink', 'projectDemoLink', 'projectScreenshot', 'projectType', 'projectAvailability'],
-                onHide) }}>
+                onHide)
+        }}>
             <div className=' w-full flex'>
 
                 <Inputs
