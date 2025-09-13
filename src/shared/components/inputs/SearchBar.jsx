@@ -9,11 +9,12 @@ function SearchBar({ searchVal, setSearchVal, queryKey }) {
     const queryClient = useQueryClient()
     const [val, setval] = useState('');
     const [err, setErr] = useState(false);
-    const customOnChange = (e) => {
+    const customOnChange = async (e) => {
         setval(e.target.value)
         if (e.target.value)
             setErr(false);
         if (!e.target.value && searchVal) {
+            await setSearchVal(null);
             setErr(false);
             queryClient.invalidateQueries({ queryKey });
         }
@@ -31,7 +32,7 @@ function SearchBar({ searchVal, setSearchVal, queryKey }) {
 
     const onEnterKeyPressed = (e) => {
         console.log('event:: ', e.key)
-        e.key === 'Enter' && handleClick()
+        if (e.key === 'Enter') handleClick()
     }
 
     return (

@@ -9,16 +9,18 @@ const dateOptions = {
     year: 'numeric',
 };
 //todo: add delete and edit icons
-function CardFooter({ by, since, portfolio, editFn, deleteFn }) {
+function CardFooter({ by, since, portfolio, userRole, editFn, deleteFn }) {
     return (
-        <div className=' w-full h-2/6 bg-neutral-dark-borders p-1.5'>
+        <div className={` w-full ${userRole !== 'user' ? 'h-2/6' : '1/6'} bg-neutral-dark-borders p-1.5 rounded-b-2xl`}>
             <p className=' w-full text-nowrap text-start me-1'>By : <span className=' text-brand-dark-default'> {by}</span></p>
             <p className=' w-full text-nowrap text-start me-1'>since : <span className=' text-brand-dark-default'> {new Date(since).toLocaleString('en-GB', dateOptions)}</span></p>
             <p className=' w-full text-nowrap text-start me-1'>portfolio : <span className=' text-brand-dark-default'> {portfolio.toString()}</span></p>
-            <div className=' w-full h-1/2 flex justify-around items-center'>
-                <BrandColorIcons Icon={FaEdit} className={' text-2xl text-yellow-500 hover:text-yellow-400 active:text-yellow-600 cursor-pointer'} />
-                <BrandColorIcons Icon={FaTrash} className={' text-2xl text-danger-default hover:text-danger-dark-default active:text-danger-active cursor-pointer'} />
-            </div>
+            {(userRole !== 'user') &&
+                <div className=' w-full h-1/2 flex justify-around items-center'>
+                    <BrandColorIcons Icon={FaEdit} className={' text-2xl text-yellow-500 hover:text-yellow-400 active:text-yellow-600 cursor-pointer'} />
+                    <BrandColorIcons Icon={FaTrash} className={' text-2xl text-danger-default hover:text-danger-dark-default active:text-danger-active cursor-pointer'} />
+                </div>
+            }
         </div>
     )
 }

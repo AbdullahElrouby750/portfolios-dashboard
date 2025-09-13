@@ -13,7 +13,7 @@ function PageInfo({info = [], infoKeyName = [], title = '', totalCount = 0}) {
             </div>
 
             <div className=' w-full flex flex-wrap gap-1 justify-around items-center'>
-                {(info && infoKeyName && info.length === infoKeyName.length !== 0) && info.map(i => <div className=' w-1/4 flex flex-col justify-center items-start' key={i[infoKeyName[0]]}>
+                {(info && infoKeyName && info.length === infoKeyName.length !== 0) && info.map(i => <div className={` w-1/4 flex flex-col justify-center ${info.length < 2 ? ' items-center' : 'items-start'}`} key={i[infoKeyName[0]]}>
                     {infoKeyName.map((key) => <p className=' text-start text-xl'>{`${key} : ${i[key]}`}</p>)}
                 </div>)}
             </div>

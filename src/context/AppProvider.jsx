@@ -1,13 +1,13 @@
 import React from "react";
 import AuthProvider from "./categorized-context/AuthProvider";
-import ProjectsProvider from "./categorized-context/TheStoreContext";
+import TheStoreContext from "./categorized-context/TheStoreContext";
 
 function AppProvider({ children }) {
     return (
         <AuthProvider>
-            <ProjectsProvider>
+            <TheStoreContext>
                 {children}
-            </ProjectsProvider>
+            </TheStoreContext>
         </AuthProvider>
     )
 }

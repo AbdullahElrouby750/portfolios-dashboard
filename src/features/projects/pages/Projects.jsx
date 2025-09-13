@@ -191,7 +191,7 @@ function Projects() {
     return (
         <div className=' w-full h-lvh flex flex-col justify-between items-center p-4.5 relative'>
             {location.pathname.includes('projects/add') && <PreventClickLayer className={' bg-secondary-dark-default'} />}
-            {addProject && <ProjectsToolBar navigate={navigate} location={location} addFn={addProject} />}
+            {addProject && <ProjectsToolBar navigate={navigate} location={location} addFn={addProject} userRole={loggedinUser.role}/>}
             <PageInfo title='Projects' info={typessCount} infoKeyName={['Type', 'count']} totalCount={totlalProjectsCount} />
             <CardsDisplayLayout searchVal={search} setSearchVal={setSearch} queryKey={queryKey} isLoading={isFetching}>
                 {projects.map(project => <Card key={project._id} cardData={project} cardKeys={cardKeys} typeValues={typeValues} loggedInUserData={loggedinUser} userUploadedByData={project.projectUploadedBy}/>)}

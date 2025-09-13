@@ -2,11 +2,12 @@ import React, { useMemo, useState } from 'react'
 import UserBar from '../component/UserBar'
 import TableDisplayLayout from '../../../shared/components/tables/TableDisplayLayout'
 import PageInfo from '../../../shared/components/PageInfo'
-import { useApiDelete, useApiGet } from '../../../shared/hooks/APIs hooks/useApi'
+import { useApiDelete, useApiGet, useApiPut } from '../../../shared/hooks/APIs hooks/useApi'
 import LoadingScrean from '../../../shared/components/state-screens/LoadingScreen'
 import useAuth from '../../../shared/hooks/conetext-hooks/useAuth'
 import BrandColorBTN from '../../../shared/components/BTNs/BrandColorBTN'
-import { useNavigate } from 'react-router'
+import { Outlet, useLocation, useNavigate } from 'react-router'
+import PreventClickLayer from '../../../shared/components/PreventClickLayer'
 
 const tableHeadValuesArr = ['Profile', 'Name', 'email', 'Role', 'Join Date', 'Options']
 const tableHeadSpaceingArr = ['w-1/12', 'w-1/4', 'w-1/4', 'w-1/12', 'w-1/6', 'w-1/6']
@@ -38,6 +39,7 @@ function Users() {
     });
 
     // deleteing users
+    const location = useLocation();
     const navigator = useNavigate();
     const onSuccessFn = (response) => {
         if (loggedinUser._id === response.id) {
@@ -45,19 +47,22 @@ function Users() {
         }
     }
     const { mutate: deleteUser, isPending: deleteing, error: deletionErr } = useApiDelete(queryKey, () => { });
+    const { mutate: updateUser, isPending: updating, error: updateingErr } = useApiPut(queryKey);
 
 
-    if (gettingUsersLoading || deleteing) return <LoadingScrean loadingText={gettingUsersLoading ? 'Getting users' : deleteing ? 'Deleting' : ''} />
+    if (gettingUsersLoading || deleteing || updating) return <LoadingScrean loadingText={gettingUsersLoading ? 'Getting users' : deleteing ? 'Deleting' : updating ? 'Updating' : ''} />
 
     return (
-        <div className=' grow h-full flex flex-col justify-between items-center p-4.5'>
+        <div className=' grow h-full flex flex-col justify-between items-center p-4.5 relative'>
+            {(location.pathname.includes('users/update') || location.pathname.includes('users/add')) && <PreventClickLayer className={' bg-secondary-dark-default'} />}
             {totlalUsersCount && <PageInfo title='users' info={rolesCount} infoKeyName={['role', 'count', 'permissions']} totalCount={totlalUsersCount} />}
             <TableDisplayLayout tableHeadValuesArr={tableHeadValuesArr} tableHeadSpaceingArr={tableHeadSpaceingArr} sensativeData={sensativeData} queryKey={queryKey} setSearch={setSearch} isLoading={isFetching} searchVal={search}>
-                {(!!users && !gettingUsersError) && users.map(user => <UserBar key={user._id} userData={user} loggedInUserId={loggedinUser._id} loggedInUseRole={loggedinUser.role} haveAccess={loggedinUser.accessAllowed} deleteFn={deleteUser} />)}
+                {(!!users && !gettingUsersError) && users.map(user => <UserBar key={user._id} userData={user} loggedInUserId={loggedinUser._id} loggedInUseRole={loggedinUser.role} haveAccess={loggedinUser.accessAllowed} deleteFn={deleteUser} editFn={updateUser} location={location} navigate={navigator} />)}
             </TableDisplayLayout>
             {sensativeData && <div className=' absolute top-1/2 w-full flex justify-center items-center text-2xl'>
                 <BrandColorBTN className=' w-1/6'>Request Access</BrandColorBTN>
             </div>}
+            <Outlet />
         </div>
     )
 }

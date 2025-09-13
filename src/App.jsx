@@ -14,8 +14,8 @@ import Projects from "./features/projects/pages/Projects";
 import Resumes from './features/resumes/pages/Resumes';
 import Contact from './features/contact/pages/Contact';
 import Themes from './features/themes/pages/Themes';
-import ModalWrapper from "./shared/components/modal/ModalWrapper";
 import AddModal from "./features/projects/component/AddModal";
+import UsersCRUDModal from "./features/users/component/UsersCRUDModal";
 
 function App() {
 
@@ -32,7 +32,9 @@ function App() {
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/users" element={<Users />} />
+              <Route path="/users" element={<Users />} >
+                <Route path="update" element={<UsersCRUDModal />}/>
+              </Route>
               <Route path="/portfolio-user" element={<Puser />} />
               <Route path="/projects" element={<Projects />}>
                 <Route path="add" element={<AddModal />} />

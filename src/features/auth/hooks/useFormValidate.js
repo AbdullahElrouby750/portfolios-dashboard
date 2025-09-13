@@ -45,6 +45,8 @@ function useFormValidate(states = {
         Object.entries(values).map(([key, value]) => {
             if ((!value || value === '') && !skipKeys.includes(key)) {
                 errorSpotted = true
+                console.log('key:: ', key)
+                console.log('value:: ', value)
                 setErrors({ ...errors, key: errors[key] });
                 setErrorMsgs({ ...errorMsgs, key: errorMsgs[key] });
             }

@@ -2,15 +2,28 @@ import React from 'react'
 import ProfileImg from '../../../shared/components/ImgFrames/ProfileImg'
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import BrandColorIcons from '../../../shared/components/Icons/BrandColorIcon';
+import useStore from '../../../shared/hooks/conetext-hooks/useStore';
+
+const handleEdit = (location, navigate, to, state, setRequest, editFn, userData) => {
+    setRequest({
+        apiFn: editFn,
+        type: 'Update',
+        data: userData,
+        path: '/account/update'
+    });
+    if (!location.pathname.includes(`users/${to}`)) navigate(`${to}`, { state: state })
+}
 
 
-function UserBar({ userData, loggedInUserId, loggedInUseRole, haveAccess, deleteFn, editFn }) {
+function UserBar({ userData, loggedInUserId, loggedInUseRole, haveAccess, deleteFn, editFn, location, navigate }) {
     const joinDate = new Date(userData?.joinDate);
     const strDate = joinDate.toLocaleDateString('en-GB', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric'
     }) ?? 'dd/mm/yyyy';
+
+    const { setRequest } = useStore();
 
     return (
         <div className=' w-full h-1/8 min-h-1/9 flex justify-around items-center text-lg
@@ -46,7 +59,10 @@ function UserBar({ userData, loggedInUserId, loggedInUseRole, haveAccess, delete
                     onClick={() => { ((loggedInUseRole === 'rouby' || haveAccess) && userData.role !== 'rouby') ? deleteFn({ path: `/account/deleteUser`, params: { id: userData._id } }) : () => { } }}
                 />
                 |
-                <BrandColorIcons className={' text-yellow-600 hover:text-yellow-400 active:text-yellow-800 transition-all drop-shadow-blue-300 cursor-pointer'} Icon={FaEdit} />
+                <BrandColorIcons
+                    onClick={() => handleEdit(location, navigate, 'update', { showState: true }, setRequest, editFn, userData)}
+                    className={' text-yellow-600 hover:text-yellow-400 active:text-yellow-800 transition-all drop-shadow-blue-300 cursor-pointer'}
+                    Icon={FaEdit} />
             </div>
 
 

@@ -11,7 +11,7 @@ function Card({cardData, cardKeys, typeValues, loggedInUserData, userUploadedByD
             <CardBody screenShot={cardData[cardKeys.bodyCover]} imgOrPdf>
                 <BrandColorBTN className=' w-full rounded-none'>More Info</BrandColorBTN>
             </CardBody>
-            <CardFooter by={userUploadedByData[cardKeys.by]} since={cardData[cardKeys.since]} portfolio={cardData[cardKeys.portfolio]}/>
+            <CardFooter by={userUploadedByData[cardKeys.by]} since={cardData[cardKeys.since]} portfolio={cardData[cardKeys.portfolio]} userRole={loggedInUserData.role}/>
         </div>
     )
 }
