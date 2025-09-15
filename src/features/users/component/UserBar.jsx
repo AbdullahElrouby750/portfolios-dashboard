@@ -53,15 +53,25 @@ function UserBar({ userData, loggedInUserId, loggedInUseRole, haveAccess, delete
             <div className=' w-1/6 h-full flex justify-around items-center px-3.5'>
                 <BrandColorIcons className={` text-danger-default hover:text-danger-dark active:text-danger-active
                                             dark:text-danger-dark-default dark:hover:text-danger-dark-dark dark:active:text-danger-dark-active
-                                            transition-all drop-shadow-blue-300 cursor-pointer ${(loggedInUseRole !== 'rouby' || userData._id === loggedInUserId) ? 'text-danger-disabled hover:text-danger-disabled active:text-danger-disabled dark:text-danger-disabled dark:hover:text-danger-disabled dark:active:text-danger-disabled cursor-default' : ''}
+                                            transition-all drop-shadow-blue-300 ${(loggedInUseRole !== 'rouby' || userData._id === loggedInUserId) ? 'text-danger-disabled hover:text-danger-disabled active:text-danger-disabled dark:text-danger-disabled dark:hover:text-danger-disabled dark:active:text-danger-disabled cursor-not-allowed' : ' cursor-pointer'}
                                             `}
                     Icon={FaTrash}
-                    onClick={() => { ((loggedInUseRole === 'rouby' || haveAccess) && userData.role !== 'rouby') ? deleteFn({ path: `/account/deleteUser`, params: { id: userData._id } }) : () => { } }}
+                    onClick={() => {
+                        if ((loggedInUseRole === 'rouby' || haveAccess) && userData.role !== 'rouby') {
+                            deleteFn({ path: `/account/deleteUser`, params: { id: userData._id } })
+                        }
+                    }}
                 />
                 |
                 <BrandColorIcons
-                    onClick={() => handleEdit(location, navigate, 'update', { showState: true }, setRequest, editFn, userData)}
-                    className={' text-yellow-600 hover:text-yellow-400 active:text-yellow-800 transition-all drop-shadow-blue-300 cursor-pointer'}
+                    onClick={() => {
+                        if ((loggedInUseRole === 'rouby' || (haveAccess && userData.role !== "rouby"))) {
+                            handleEdit(location, navigate, 'update', { showState: true }, setRequest, editFn, userData)
+                        }
+                    }}
+                    className={` 
+                            ${(!haveAccess || (haveAccess && userData.role === 'rouby' && loggedInUseRole !== 'rouby') ) ? 'text-yellow-200 hover:text-yellow-200 active:text-yellow-200 cursor-not-allowed' : 'text-yellow-600 hover:text-yellow-400 active:text-yellow-800 cursor-pointer '}
+                            transition-all drop-shadow-blue-300`}
                     Icon={FaEdit} />
             </div>
 

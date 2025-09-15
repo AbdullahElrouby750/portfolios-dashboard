@@ -7,6 +7,9 @@ import Inputs from '../../../shared/components/inputs/Inputs';
 import DropDownRatio from '../../../shared/components/inputs/DropDownRatio';
 import useAuth from '../../../shared/hooks/conetext-hooks/useAuth';
 
+
+const passwordRegex = new RegExp('^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$');
+
 function UsersForm({ onHide }) {
     const { request } = useStore();
     const userData = request && request.data ? {
@@ -18,14 +21,19 @@ function UsersForm({ onHide }) {
         accessAllowed: request.data.accessAllowed,
     } : null;
     const { user: loggedinUser } = useAuth()
-    const [fieldsValues, setFieldsValues] = useState(userData ?? { name: '', email: '', role: 'user', profileImg: '', phoneNumber: '', accessAllowed: false });
-    const [fieldsErrors, setFieldsErrors] = useState({ name: false, email: false, role: false, profileImg: false, phoneNumber: false, accessAllowed: false });
-    const [fieldsErrorMsgs, setFieldsErrorMsgs] = useState({ name: '', email: '', role: '', profileImg: '', phoneNumber: '', accessAllowed: '' });
+    const [fieldsValues, setFieldsValues] = useState(userData ?? { name: '', email: '', role: 'user', profileImg: '', phoneNumber: '', accessAllowed: false, password:'' });
+    const [fieldsErrors, setFieldsErrors] = useState({ name: false, email: false, role: false, profileImg: false, phoneNumber: false, accessAllowed: false, password: false });
+    const [fieldsErrorMsgs, setFieldsErrorMsgs] = useState({ name: '', email: '', role: '', profileImg: '', phoneNumber: '', accessAllowed: '', password: '' });
     const { values, errors, errorMsgs, handleChange, handleBlur, handleSubmit } = useFormValidate({
         values: fieldsValues, setValues: setFieldsValues,
         errors: fieldsErrors, setErrors: setFieldsErrors,
         errorMsgs: fieldsErrorMsgs, setErrorMsgs: setFieldsErrorMsgs
     })
+
+    const skipValArr = ['accessAllowed', 'phoneNumber', 'profileImg']
+    if(request.type !== 'Add'){
+        skipValArr.push('password');
+    }
 
     //todo: when update check if the values have changed or not before sending unwanted request
     return <form className=' w-full flex flex-col justify-around items-center' onSubmit={e => {
@@ -34,9 +42,9 @@ function UsersForm({ onHide }) {
             request.path,
             request.apiFn,
             true,
-            ['accessAllowed', 'phoneNumber', 'profileImg'],
+            skipValArr,
             onHide,
-            {id: request.data._id},
+            { id: request?.data?._id ?? null },
         )
     }}>
 
@@ -144,6 +152,24 @@ function UsersForm({ onHide }) {
             />
 
         </div>
+
+        {(request.type === 'Add') &&
+            <div className=' w-full flex'>
+                <Inputs
+                    fieldName={"password"}
+                    value={values.password}
+                    error={errors.password}
+                    errMsg={errorMsgs.password}
+                    lable={"Password"}
+                    type={"password"}
+                    placeholder={"Enter your password here..."}
+                    required
+                    regex={passwordRegex}
+                    customOnChange={handleChange}
+                    customOnBlur={handleBlur}
+                    lightBg
+                    className={'w-full'} />
+            </div>}
 
 
         <div className='w-full'>

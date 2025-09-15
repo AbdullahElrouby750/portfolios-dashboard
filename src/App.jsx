@@ -33,7 +33,8 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/users" element={<Users />} >
-                <Route path="update" element={<UsersCRUDModal />}/>
+                <Route path="update" element={<UsersCRUDModal key={'user' + 'update'}/>}/>
+                <Route path="add" element={<UsersCRUDModal key={'user' + 'add'}/>}/>
               </Route>
               <Route path="/portfolio-user" element={<Puser />} />
               <Route path="/projects" element={<Projects />}>
