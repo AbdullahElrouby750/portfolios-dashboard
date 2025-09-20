@@ -9,7 +9,17 @@ import useStore from '../../../shared/hooks/conetext-hooks/useStore'
 
 function ProjectsForm({ onHide }) {
     const { request } = useStore()
-    const [fieldsValues, setFieldsValues] = useState(request?.data ?? { projectTitle: '', projectType: 1, projectGitHubLink: '', projectDemoLink: '', projectAvailability: true, projectCreationDate: '', projectScreenshot: '', projectDescription: '' })
+    const projectData = request && request.data ? {
+        projectTitle: request.data?.projectTitle,
+        projectType: request.data?.projectType,
+        projectGitHubLink: request.data?.projectGitHubLink,
+        projectDemoLink: request.data?.projectDemoLink,
+        projectAvailability: request.data?.projectAvailability,
+        projectCreationDate: request.data?.projectCreationDate.split('T')[0],
+        projectScreenshot: '',
+        projectDescription: request.data?.projectDescription
+    } : null
+    const [fieldsValues, setFieldsValues] = useState(projectData ?? { projectTitle: '', projectType: 1, projectGitHubLink: '', projectDemoLink: '', projectAvailability: true, projectCreationDate: '', projectScreenshot: '', projectDescription: '' })
     const [fieldsErrors, setFieldsErrors] = useState({ projectTitle: false, projectType: false, projectGitHubLink: false, projectDemoLink: false, projectAvailability: false, projectCreationDate: false, projectScreenshot: false, projectDescription: false })
     const [fieldsErrorMsgs, setFieldsErrorMsgs] = useState({ projectTitle: '', projectType: '', projectGitHubLink: '', projectDemoLink: '', projectAvailability: '', projectCreationDate: '', projectScreenshot: '', projectDescription: '' })
 
@@ -26,7 +36,10 @@ function ProjectsForm({ onHide }) {
                 request.apiFn,
                 true,
                 ['projectGitHubLink', 'projectDemoLink', 'projectScreenshot', 'projectType', 'projectAvailability'],
-                onHide)
+                onHide,
+                null,
+                [request.data._id]
+            )
         }}>
             <div className=' w-full flex'>
 
@@ -173,7 +186,7 @@ function ProjectsForm({ onHide }) {
                         className=' w-1/3'
                         type={'submit'}
                         disabled={(Object.values(errors).some(e => e)) || !(values.projectTitle && values.projectCreationDate && values.projectDescription)}
-                    >Add</BrandColorBTN>
+                    >{request.type}</BrandColorBTN>
                     <DangerBTN lightBg className=' w-1/3' onClick={onHide} >cancel</DangerBTN>
                 </div>
             </div>

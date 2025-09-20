@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from 'react-router'
 import { useMemo, useState } from 'react'
-import { useApiGet, useApiPost, useApiPut } from '../../../shared/hooks/APIs hooks/useApi'
+import { useApiDelete, useApiGet, useApiPost, useApiPut } from '../../../shared/hooks/APIs hooks/useApi'
 import ProjectsToolBar from '../component/ProjectsToolBar'
 import Card from '../../../shared/components/cards/Card'
 import CardsDisplayLayout from '../../../shared/components/cards/CardsDisplayLayout'
@@ -172,6 +172,7 @@ function Projects() {
     const { data: groupedProjects, isLoading: gettingProjects, error: errorGetting, isFetching } = useApiGet('/projects/getAll', { groupBy: 'projectType', sort: 1, search: search, doPopulation: true }, queryKey);
     const { mutate: addProject, isPending: adding, error: errorAdding, isSuccess: added } = useApiPost(queryKey);
     const { mutate: editProject, isPending: editing, error: errorEditing, isSuccess: edited } = useApiPut(queryKey);
+    const { mutate: deleteProject, isPending: deleteing, error: deleteingErr} = useApiDelete(queryKey);
 
     const projects = useMemo(() => {
         if (!groupedProjects) return [];
@@ -186,7 +187,7 @@ function Projects() {
         }
     });
 
-    if (adding, editing, gettingProjects) return <LoadingScrean loadingText={adding ? 'Adding one Project' : editing ? 'Editing project(s)' : gettingProjects ? 'Fetching Project(s)' : 'Loading'} />
+    if (adding, editing, gettingProjects, deleteing) return <LoadingScrean loadingText={adding ? 'Adding one Project' : editing ? 'Editing project(s)' : gettingProjects ? 'Fetching Project(s)' : deleteing ? 'Deleteing Project(s)' : 'Loading'} />
 
     return (
         <div className=' w-full h-lvh flex flex-col justify-between items-center p-4.5 relative'>
@@ -194,7 +195,16 @@ function Projects() {
             {addProject && <ProjectsToolBar navigate={navigate} location={location} addFn={addProject} userRole={loggedinUser.role}/>}
             <PageInfo title='Projects' info={typessCount} infoKeyName={['Type', 'count']} totalCount={totlalProjectsCount} />
             <CardsDisplayLayout searchVal={search} setSearchVal={setSearch} queryKey={queryKey} isLoading={isFetching}>
-                {projects.map(project => <Card key={project._id} cardData={project} cardKeys={cardKeys} typeValues={typeValues} loggedInUserData={loggedinUser} userUploadedByData={project.projectUploadedBy}/>)}
+                {projects.map(project => <Card 
+                        key={project._id} 
+                        cardData={project} 
+                        cardKeys={cardKeys} 
+                        typeValues={typeValues} 
+                        loggedInUserData={loggedinUser} 
+                        userUploadedByData={project.projectUploadedBy}
+                        editFn={editProject}
+                        deleteFn={deleteProject}
+                        />)}
             </CardsDisplayLayout>
             <Outlet />
         </div>

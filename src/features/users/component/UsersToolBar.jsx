@@ -32,13 +32,6 @@ function UsersToolBar({ navigate, location, addFn, userRole, userAccess }) {
         }
 
         {
-            (userRole == 'rouby') &&
-            <div className=' cursor-pointer hover:text-danger-default active:text-danger-active transition-all '>
-                <p>Delete</p>
-            </div>
-        }
-
-        {
             (!userAccess) &&
             <div className=' cursor-pointer hover:text-brand-default active:text-brand-active transition-all '>
                 <p>Request Access</p>

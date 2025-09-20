@@ -1,9 +1,10 @@
 import convertToFormData from "../../../shared/utils/convertToFormData";
 function useFormValidate(states = {
-                    values: null, setValues: () =>{},
-                    errors: null, setErrors: () =>{},
-                    errorMsgs: null, setErrorMsgs: () =>{},}) {
-    const {values, setValues, errors, setErrors, errorMsgs, setErrorMsgs} = states
+    values: null, setValues: () => { },
+    errors: null, setErrors: () => { },
+    errorMsgs: null, setErrorMsgs: () => { },
+}) {
+    const { values, setValues, errors, setErrors, errorMsgs, setErrorMsgs } = states
     // //todo: send them to the hook and make it dynamic
     // const [values, setValues] = useState({ name: '', email: '', role: 'user', password: '', profileImg: '', phoneNumber: '', accessAllowed: false });
     // const [errors, setErrors] = useState({ name: false, email: false, role: false, password: false, profileImg: false, phoneNumber: false, accessAllowed: false });
@@ -11,8 +12,8 @@ function useFormValidate(states = {
     // //todo: send them to the hook and make it dynamic
 
     const handleChange = (e, regex, fieldName, fileRequired) => {
-        if (e.target.type === 'file') 
-            setValues(v => ({ ...v, [fieldName]: e.target.files[0] })) 
+        if (e.target.type === 'file')
+            setValues(v => ({ ...v, [fieldName]: e.target.files[0] }))
         else
             setValues(v => ({ ...v, [fieldName]: e.target.value }));
 
@@ -39,7 +40,7 @@ function useFormValidate(states = {
         }
     }
 
-    const handleSubmit = (path, apiCallFn, convertDataToFileType, skipKeys = [], successFn = () => {}, params = null) => {
+    const handleSubmit = (path, apiCallFn, convertDataToFileType, skipKeys = [], successFn = () => { }, params = null, idsArr = []) => {
         console.log("from handleSubmit", path, apiCallFn, convertDataToFileType, skipKeys);
         let errorSpotted = false;
         Object.entries(values).map(([key, value]) => {
@@ -52,18 +53,14 @@ function useFormValidate(states = {
             }
         })
         if (errorSpotted) return
-        let data = values;
-        let formData = new FormData();
-        if (convertDataToFileType) {
-            formData = convertToFormData(values);
-        }
-        const dataToSend = {
-            path,
-            data: convertDataToFileType ? formData : data,
-            params
-        }
+        let data =  convertDataToFileType ? convertToFormData((idsArr.length > 0) ? {...values, idsArr} : values) : values;
+
+        console.log('data from handleSubmit:: ', data)
+
+        const dataToSend = { path, data, params }
         apiCallFn(dataToSend);
         successFn();
+
     }
     return { values, setValues, errors, setErrors, errorMsgs, setErrorMsgs, handleChange, handleBlur, handleSubmit }
 }

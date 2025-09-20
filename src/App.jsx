@@ -38,7 +38,8 @@ function App() {
               </Route>
               <Route path="/portfolio-user" element={<Puser />} />
               <Route path="/projects" element={<Projects />}>
-                <Route path="add" element={<AddModal />} />
+                <Route path="add" element={<AddModal key={'project' + 'add'}/>} />
+                <Route path="update" element={<AddModal key={'project' + 'update'}/>} />
               </Route>
               <Route path="/resumes" element={<Resumes />} />
               <Route path="/contact" element={<Contact />} />

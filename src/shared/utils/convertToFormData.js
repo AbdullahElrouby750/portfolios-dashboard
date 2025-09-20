@@ -13,7 +13,7 @@ const convertToFormData = (dataObj = {}) => {
     });
 
     
-    // console.log('formData:: ', [...formData.entries()]); // Log entries for debugging
+    console.log('formData:: ', [...formData.entries()]); // Log entries for debugging
 
     return formData;
 };

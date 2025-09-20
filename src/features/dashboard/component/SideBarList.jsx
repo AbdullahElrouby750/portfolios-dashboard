@@ -3,7 +3,7 @@ import BrandColorIcons from "../../../shared/components/Icons/BrandColorIcon";
 import { useState } from "react";
 import ProfileImg from "../../../shared/components/ImgFrames/ProfileImg";
 
-function SideBarList({ icon, title, navigateTo, profileImg, profileImgPlaceholder , profileImgWidth = 'w-1/7 bottom-1.5 left-1.5'}) {
+function SideBarList({ icon, title, navigateTo, profileImg, profileImgPlaceholder , profileImgWidth = 'w-1/4 bottom-1.5 left-1.5'}) {
     const [isActive, setIsActive] = useState(false);
     return <li className={` align-text-bottom relative group px-4.5 text-3xl flex justify-center items-center border-b-2 border-b-brand-default dark:border-b-brand-dark-default rounded-b-2xl mb-1.5
     hover:shadow-brand-light/90 hover:cursor-pointer shadow-xl transition-all duration-300

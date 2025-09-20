@@ -16,7 +16,7 @@ function UsersForm({ onHide }) {
         name: request.data.name,
         email: request.data.email,
         role: request.data.role,
-        profileImg: request.data.profileImg,
+        profileImg: '',
         phoneNumber: request.data.phoneNumber,
         accessAllowed: request.data.accessAllowed,
     } : null;

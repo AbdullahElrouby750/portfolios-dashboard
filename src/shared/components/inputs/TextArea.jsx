@@ -23,7 +23,7 @@ function TextArea({
             ms-1.5 ${error && 'text-danger-dark-default dark:text-danger-dark-dark-default'}`}>
                 {lable}{required && <span className='text-danger-default'>*</span>}
             </motion.label>
-            <motion.textArea
+            <motion.textarea
                 className={`w-full rounded-lg ps-5 mb-1 h-10 border-brand-default dark:border-brand-dark-default border-2 
                 placeholder:text-brand-default dark:placeholder:text-brand-dark-default
                     text-neutral-text-${lightBg ? 'dark' : 'light'} dark: text-neutral-dark-text-${lightBg ? 'dark' : 'light'} 

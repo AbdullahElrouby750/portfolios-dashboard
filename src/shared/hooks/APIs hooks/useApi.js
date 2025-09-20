@@ -12,7 +12,7 @@ export const useApiGet = (path, params, queryKey) => {
     });
 }
 
-export const useApiPost = (queryKey, onSuccessFn = () => { }, useReturnedDataOnSuccessFn= false, onErrorFn = () => { }) => {
+export const useApiPost = (queryKey, onSuccessFn = () => { }, useReturnedDataOnSuccessFn = false, onErrorFn = () => { }) => {
     const queryClient = useQueryClient();
     const mutationFn = (sentData) => apiPost(sentData.path, sentData.data, sentData.params);
     return useMutation({
@@ -46,7 +46,7 @@ export const useApiPut = (queryKey, onSuccessFn = () => { }, onErrorFn = () => {
 
 export const useApiDelete = (queryKey, onSuccessFn = () => { }, onErrorFn = () => { }) => {
     const queryClient = useQueryClient();
-    const mutationFn = (data) => apiDelete(data.path, data.params );
+    const mutationFn = (data) => apiDelete(data.path, data.data, data.params);
     return useMutation({
         mutationFn,
         onSuccess: (returnedData, sentData) => {
