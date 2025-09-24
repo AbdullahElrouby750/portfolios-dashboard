@@ -4,7 +4,7 @@ import BrandColorBTN from '../../../shared/components/BTNs/BrandColorBTN'
 import DangerBTN from '../../../shared/components/BTNs/DangerBTN'
 import TextArea from '../../../shared/components/inputs/TextArea'
 import DropDownRatio from '../../../shared/components/inputs/DropDownRatio'
-import useFormValidate from '../../auth/hooks/useFormValidate'
+import useFormValidate from '../../../shared/hooks/validation-hooks/useFormValidate'
 import useStore from '../../../shared/hooks/conetext-hooks/useStore'
 
 function ProjectsForm({ onHide }) {

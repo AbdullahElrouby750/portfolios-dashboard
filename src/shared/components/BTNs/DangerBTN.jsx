@@ -19,7 +19,7 @@ function DangerBTN({ className = "", onClick = () => { }, children, disabled, ty
             dark:bg-danger-dark-default 
             dark:hover:bg-danger-dark-dark 
             dark:active:bg-danger-dark-active
-            $disabled:bg-brand-disabled disabled:hover:bg-brand-disabled disabled:active:bg-brand-disabled
+            disabled:bg-brand-disabled disabled:hover:bg-brand-disabled disabled:active:bg-brand-disabled
             hover:cursor-pointer
             `}
 

@@ -6,6 +6,7 @@ export const TheStoreContext = createContext({
         data: {},
         type: '',
         path: '',
+        modalText: '',
     },
     setRequest: () => { }
 });
@@ -16,6 +17,7 @@ function ProjectsProvider({ children }) {
         data: {},
         type: '',
         path: '',
+        modalText: '',
     })
     return (
         <TheStoreContext.Provider value={{ request, setRequest }}>{children}</TheStoreContext.Provider>

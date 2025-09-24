@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useStore from '../../../shared/hooks/conetext-hooks/useStore';
 import BrandColorBTN from '../../../shared/components/BTNs/BrandColorBTN';
 import DangerBTN from '../../../shared/components/BTNs/DangerBTN';
-import useFormValidate from '../../auth/hooks/useFormValidate';
+import useFormValidate from '../../../shared/hooks/validation-hooks/useFormValidate';
 import Inputs from '../../../shared/components/inputs/Inputs';
 import DropDownRatio from '../../../shared/components/inputs/DropDownRatio';
 import useAuth from '../../../shared/hooks/conetext-hooks/useAuth';

@@ -1,17 +1,7 @@
 import React from 'react'
 import ToolBarWrapper from '../../../shared/components/toolBar/ToolBarWrapper'
 import useStore from '../../../shared/hooks/conetext-hooks/useStore';
-const navigateTo = (location, navigate, to, state, setRequest, addFn) => {
-
-    setRequest({
-        apiFn: addFn,
-        type: 'Add',
-        data: null,
-        path: '/account/create'
-    });
-    if (!location.pathname.includes(`usres/${to}`)) navigate(`${to}`, { state: state })
-}
-
+import navigateToModal from '../../../shared/utils/navigateToModal';
 
 
 function UsersToolBar({ navigate, location, addFn, userRole, userAccess }) {
@@ -26,7 +16,7 @@ function UsersToolBar({ navigate, location, addFn, userRole, userAccess }) {
             (userAccess) &&
             <div className={` cursor-pointer hover:text-success-default active:text-success-active transition-all duration-300 
                             ${location.pathname.includes('users/add') ? 'text-success-default' : ''}`}
-                onClick={() => navigateTo(location, navigate, 'add', { showState: true }, setRequest, addFn)}>
+                onClick={() => navigateToModal(location, navigate, 'add', { showState: true }, setRequest, addFn, 'Add', '/account/create', 'usres')}>
                 <p>Add</p>
             </div>
         }

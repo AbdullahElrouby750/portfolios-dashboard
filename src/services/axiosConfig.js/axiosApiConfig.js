@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = axios.create({ baseURL: import.meta.env.VITE_OTHER_API_URL });
+const api = axios.create({ baseURL: import.meta.env.VITE_OTHER_API_URL_LOCAL });
 
 
 export const apiGet = async (path, params) => {
@@ -17,9 +17,6 @@ export const apiGet = async (path, params) => {
 
 export const apiPost = async (path, data, params) => {
     try {
-        console.log('path::', path)
-        console.log('data::', data)
-        console.log('params::', params)
         const response = await api.post(path, data, { params: params, withCredentials: true });
         console.log('response:: ', response)
         return response.data;
@@ -32,7 +29,6 @@ export const apiPost = async (path, data, params) => {
 
 export const apiPut = async (path, data, params) => {
     try {
-        console.log('data from apiPut:: ', [...data.entries()])
         const response = await api.put(path, data, { params: params, withCredentials: true });
         console.log('response:: ', response)
         return response.data;
@@ -45,9 +41,6 @@ export const apiPut = async (path, data, params) => {
 
 export const apiDelete = async (path, data, params) => {
     try {
-        console.log('params:: ', params)
-        console.log('data:: ', data)
-        console.log('path:: ', path)
         const response = await api.delete(path, {data, params, withCredentials: true });
         console.log('response:: ', response)
         return response.data;

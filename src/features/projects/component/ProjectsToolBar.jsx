@@ -1,18 +1,10 @@
 import React from "react";
 import ToolBarWrapper from "../../../shared/components/toolBar/ToolBarWrapper";
 import useStore from "../../../shared/hooks/conetext-hooks/useStore";
-const navigateTo = (location, navigate, to, state, setRequest, addFn) => {
+import navigateToModal from "../../../shared/utils/navigateToModal";
 
-  setRequest({
-    apiFn: addFn,
-    type: 'Add',
-    data: null,
-    path: '/projects/create'
-  });
-  if (!location.pathname.includes(`projects/${to}`)) navigate(`${to}`, { state: state })
-}
 
-function ProjectsToolBar({ navigate, location, addFn, userRole }) {
+function ProjectsToolBar({ navigate, location, addFn, userRole, setUpdatingGroups, updatingGroups }) {
   const { setRequest } = useStore();
 
 
@@ -24,7 +16,8 @@ function ProjectsToolBar({ navigate, location, addFn, userRole }) {
 
     {
       (userRole !== 'user') &&
-      <div className=' cursor-pointer hover:text-yellow-400 active:text-yellow-600 transition-all '>
+      <div className={` cursor-pointer transition-all ${updatingGroups ? 'text-yellow-400 hover:text-yellow-400 active:text-yellow-400' : ' hover:text-yellow-400 active:text-yellow-600'}`}
+        onClick={() => setUpdatingGroups(current => !current)}>
         <p>Avilable</p>
       </div>
     }
@@ -33,7 +26,7 @@ function ProjectsToolBar({ navigate, location, addFn, userRole }) {
       (userRole !== 'user') &&
       <div className={` cursor-pointer hover:text-success-default active:text-success-active transition-all duration-300 
     ${location.pathname.includes('projects/add') ? 'text-success-default' : ''}`}
-        onClick={() => navigateTo(location, navigate, 'add', { showState: true }, setRequest, addFn)}>
+        onClick={() => navigateToModal(location, navigate, 'add', { showState: true }, setRequest, addFn, null, 'Add', '/projects/create', 'projects')}>
         <p>Add</p>
       </div>
     }

@@ -14,8 +14,9 @@ import Projects from "./features/projects/pages/Projects";
 import Resumes from './features/resumes/pages/Resumes';
 import Contact from './features/contact/pages/Contact';
 import Themes from './features/themes/pages/Themes';
-import AddModal from "./features/projects/component/AddModal";
+import ProjectsCRUDModal from "./features/projects/component/ProjectsCRUDModal";
 import UsersCRUDModal from "./features/users/component/UsersCRUDModal";
+import ModalConfirmOrDeny from "./shared/components/modal/ModalConfirmOrDeny";
 
 function App() {
 
@@ -38,8 +39,9 @@ function App() {
               </Route>
               <Route path="/portfolio-user" element={<Puser />} />
               <Route path="/projects" element={<Projects />}>
-                <Route path="add" element={<AddModal key={'project' + 'add'}/>} />
-                <Route path="update" element={<AddModal key={'project' + 'update'}/>} />
+                <Route path="add" element={<ProjectsCRUDModal key={'project' + 'add'}/>} />
+                <Route path="update" element={<ProjectsCRUDModal key={'project' + 'update'}/>} />
+                <Route path="confirmDenyModal" element={<ModalConfirmOrDeny key={'project' + 'confirmDenyModal'}/>}/>
               </Route>
               <Route path="/resumes" element={<Resumes />} />
               <Route path="/contact" element={<Contact />} />

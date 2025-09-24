@@ -1,11 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router';
 import ModalWrapper from '../../../shared/components/modal/ModalWrapper'
 import FormLayout from '../../auth/component/signup/FormLayout'
-import { useNavigate } from 'react-router';
 import ProjectsForm from './ProjectsForm';
 import useStore from '../../../shared/hooks/conetext-hooks/useStore';
 
-function AddModal() {
+function ProjectsCRUDModal() {
     const { request } = useStore()
     const [show, setShow] = useState(true);
     const navigate = useNavigate();
@@ -28,4 +28,4 @@ function AddModal() {
     )
 }
 
-export default AddModal
+export default ProjectsCRUDModal

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const auth = axios.create({ baseURL: import.meta.env.VITE_AUTH_API_URL });
+const auth = axios.create({ baseURL: import.meta.env.VITE_AUTH_API_URL_LOCAL });
 
 export const authGet = async (path) => {
     try {

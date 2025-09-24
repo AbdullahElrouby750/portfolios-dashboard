@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useFormValidate from '../../hooks/useFormValidate'
+import useFormValidate from '../../../../shared/hooks/validation-hooks/useFormValidate'
 import Inputs from '../../../../shared/components/inputs/Inputs';
 import BrandColorBTN from '../../../../shared/components/BTNs/BrandColorBTN';
 import useAuth from '../../../../shared/hooks/conetext-hooks/useAuth';
