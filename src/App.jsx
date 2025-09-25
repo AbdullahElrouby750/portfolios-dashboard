@@ -18,7 +18,10 @@ import ProjectsCRUDModal from "./features/projects/component/ProjectsCRUDModal";
 import UsersCRUDModal from "./features/users/component/UsersCRUDModal";
 import ModalConfirmOrDeny from "./shared/components/modal/ModalConfirmOrDeny";
 
+
 const envMode = import.meta.env.MODE
+const baseURL = envMode === 'development' ? import.meta.env.VITE_OTHER_API_URL_LOCAL : import.meta.env.VITE_OTHER_API_URL_SERVER
+console.log("Test: ", baseURL)
 
 function App() {
 
