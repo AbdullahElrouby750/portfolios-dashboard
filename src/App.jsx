@@ -18,6 +18,9 @@ import ProjectsCRUDModal from "./features/projects/component/ProjectsCRUDModal";
 import UsersCRUDModal from "./features/users/component/UsersCRUDModal";
 import ModalConfirmOrDeny from "./shared/components/modal/ModalConfirmOrDeny";
 
+const envState = import.meta.env.NODE_ENV
+console.log('envState::', envState)
+
 function App() {
 
   const queruClint = new QueryClient();
