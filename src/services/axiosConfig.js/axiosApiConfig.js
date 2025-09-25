@@ -1,6 +1,9 @@
 import axios from "axios";
+const envMode = import.meta.env.MODE
+const baseURL = envMode === 'development' ? import.meta.env.VITE_OTHER_API_URL_LOCAL : import.meta.env.VITE_OTHER_API_URL_SERVER
 
-const api = axios.create({ baseURL: import.meta.env.VITE_OTHER_API_URL_LOCAL });
+
+const api = axios.create({ baseURL });
 
 
 export const apiGet = async (path, params) => {

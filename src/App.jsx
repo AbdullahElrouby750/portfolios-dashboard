@@ -18,14 +18,7 @@ import ProjectsCRUDModal from "./features/projects/component/ProjectsCRUDModal";
 import UsersCRUDModal from "./features/users/component/UsersCRUDModal";
 import ModalConfirmOrDeny from "./shared/components/modal/ModalConfirmOrDeny";
 
-const envState = import.meta.env.MODE
-console.log('import.meta.env.MODE:: ', import.meta.env.MODE)
-console.log('envState::', envState)
-if(import.meta.env.MODE === 'development'){
-  console.log('development')
-} else if(import.meta.env.MODE === 'production'){
-  console.log('production')
-}
+const envMode = import.meta.env.MODE
 
 function App() {
 
